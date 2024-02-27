@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New invoice Alert</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      .invoice-details {
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>New invoice Alert</h1>
+
+    <div class="invoice-details">
+      <p><strong>Client Name:</strong> <%= invoice.clientName %></p>
+      <p><strong>Client Email:</strong> <%= invoice.clientEmail %></p>
+      <p><strong>Client Number:</strong> <%= invoice.clientNumber %></p>
+      <p><strong>Campaign Name:</strong> <%= invoice.campaignName %></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Unit Price</th>
+          <th>Total Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% invoice.products.forEach(product => { %>
+        <tr>
+          <td><%= product.productName %></td>
+          <td><%= product.productDescription %></td>
+          <td><%= product.quantity %></td>
+          <td>$<%= product.productPrice.toFixed(2) %></td>
+          <td>$<%= product.totalPrice.toFixed(2) %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+
+    <div class="footer">
+      <p>Please review this new invoice.</p>
+    </div>
+  </body>
+</html>
